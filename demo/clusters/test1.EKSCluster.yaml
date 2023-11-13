@@ -1,0 +1,21 @@
+apiVersion: backstack.cncf.io/v1alpha1
+kind: EKSCluster
+metadata:
+  name: test1
+  namespace: default
+spec:
+  parameters:
+    id: test1
+    region: eu-central-1
+    iam:
+      roleArn: 
+    version: "1.28"
+    nodes:
+      count: 3
+      instanceType: t3.small
+  writeConnectionSecretToRef:
+    name: test1-kubeconfig
+  publishConnectionDetailsTo:
+    name: test1/test1-kubeconfig
+    configRef:
+      name: vault
